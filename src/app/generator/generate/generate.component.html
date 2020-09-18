@@ -66,11 +66,12 @@
 
 
         <section class="block" fxLayout="column" fxLayoutAlign="space-around center">
-            <span>{{generateForms.get('title').value}}</span>
-            <ul *ngFor="let test of result">
-                <li>{{test}}</li>
-                
+            <span>{{'"'}}{{generate?.title}}{{'"'}}:</span>
+            <span>{{ '{'}}</span>
+            <ul *ngFor="let properties of generate?.properties">
+                <li>{{'"'}}{{properties?.titleProperties}}{{'"'}}: {{'"'}}{{valueString}}{{'"'}}</li>
             </ul>
+            <span>{{ '}'}}</span>
         </section>
 
     </section>

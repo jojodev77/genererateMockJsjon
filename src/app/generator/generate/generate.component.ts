@@ -3,6 +3,8 @@ import { FormArray, FormGroup } from '@angular/forms';
 
 import {GeneratorFormsService} from '../services/generator-forms.service';
 
+import {Generate} from './model/generate.model';
+
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
@@ -16,8 +18,9 @@ export class GenerateComponent implements OnInit {
 
   generateForms: FormGroup;
   nbrProperties: number;
-  result: string[] = [];
-  test;
+  generate: Generate;
+
+  valueString: string;
 
   ngOnInit(): void {
     this.generateForms = this.generateFormsService.buildForm();
@@ -33,19 +36,23 @@ addGenerateForm(): void {
 }
 
 creationMock() {
+
   
-  for (let index = 0; index < this.generateForms.getRawValue().generateFormArray.length; index++) {
-    const element = this.generateForms.getRawValue().generateFormArray[index];
-    
-this.result.push(this.test)
-    
-    this.test = [
-    { titleProperties: element.titleProperties}
-    ]
-    console.log(this.result)
+this.generate = {
+  title: this.generateForms.get('title').value,
+  properties: this.generateForms.getRawValue().generateFormArray
+} as Generate;
+
+this.generateString();
 }
 
+generateString() {
+  this.valueString = 'Hello';
+  return this.valueString;
+}
 
+generateNumber() {
+  return 123
 }
 
 }
