@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+body, html {
+    background-color: silver;
+    font-size: 14px;
+    font-family: arial;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+mat-form-field{
+    margin: 5px;
+    padding: 10px;
+}
+

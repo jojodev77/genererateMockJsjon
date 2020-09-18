@@ -1,0 +1,77 @@
+<app-header></app-header>
+<form [formGroup]="generateForms">
+    <section fxLayout="row" fxLayoutAlign="space-around center">
+
+        <section class="block" fxLayout="column" fxLayoutAlign="space-around center">
+            <span>Création du mock</span>
+            <section>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Titre de la data</mat-label>
+                    <input matInput type="text" formControlName="title">
+                    <button mat-button *ngIf="generateForms.get('title').value" matSuffix mat-icon-button
+                        aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </section>
+
+            <button (click)="addGenerateForm()">
+                Ajouter une propriété
+                <mat-icon>playlist_add</mat-icon>
+            </button>
+
+            <section fxLayout="column" fxLayoutAlign="space-around center" formArrayName="generateFormArray">
+                <section *ngFor="let generateForm of getGenerateFormControls(); index as i" [formGroupName]="i">
+                    <span>Propriété {{nbrProperties}}</span>
+                    <section fxLayout="row" fxLayoutAlign="space-around center">
+
+                        <section>
+                            <mat-form-field class="example-form-field">
+                                <mat-label>Nom de la Propriété {{nbrProperties}}</mat-label>
+                                <input matInput type="text" formControlName="titleProperties">
+                                <button mat-button *ngIf="generateForms.get('title').value" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="value=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </section>
+
+                        <section>
+                            <mat-form-field class="example-form-field">
+                                <mat-label>Type de la Propriété {{nbrProperties}}</mat-label>
+                                <input matInput type="text" formControlName="typeProperties">
+                                <button mat-button *ngIf="generateForms.get('title').value" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="value=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </section>
+
+                    </section>
+
+                </section>
+                <button (click)="creationMock()">
+                    Création
+                    <mat-icon>playlist_add_check</mat-icon>
+                </button>
+
+            </section>
+
+
+
+            <section>
+
+            </section>
+        </section>
+
+
+        <section class="block" fxLayout="column" fxLayoutAlign="space-around center">
+            <span>{{generateForms.get('title').value}}</span>
+            <ul *ngFor="let test of result">
+                <li>{{test}}</li>
+                
+            </ul>
+        </section>
+
+    </section>
+</form>
