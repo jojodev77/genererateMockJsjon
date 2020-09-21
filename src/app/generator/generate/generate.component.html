@@ -33,7 +33,7 @@
 
             <section fxLayout="column" fxLayoutAlign="space-around center" formArrayName="generateFormArray">
                 <section *ngFor="let generateForm of getGenerateFormControls(); index as i" [formGroupName]="i">
-                    <span>Propriété {{nbrProperties}}</span>
+                    <span class="nbrProperties">Propriété {{nbrProperties}}</span>
                     <section fxLayout="row" fxLayoutAlign="space-around center">
 
                         <section>

@@ -33,10 +33,10 @@ export class GenerateComponent implements OnInit {
 
   valueAny: any;
 
-   valueSelect = [
-    {value: 'string'},
-    {value: 'number'},
-    {value: 'array'},
+  valueSelect = [
+    { value: 'string' },
+    { value: 'number' },
+    { value: 'array' },
   ];
   optionStatus = {
     value: ''
@@ -47,7 +47,7 @@ export class GenerateComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateForms = this.generateFormsService.buildForm();
-    this.nbrProperties = 1;
+    this.nbrProperties = 0;
   }
 
   getGenerateFormControls() {
@@ -56,47 +56,43 @@ export class GenerateComponent implements OnInit {
 
   addGenerateForm(): void {
     this.generateFormsService.addGenerateForm(this.generateForms);
+    this.nbrProperties ++;
   }
 
   creationMock() {
+
     this.generate = {
       title: this.generateForms.get('title').value,
-      properties: this.generateForms.getRawValue().generateFormArray,
-      result: this.valueAny
+      properties: this.generateForms.getRawValue().generateFormArray
     } as Generate;
+
+    for (let index = 0; index < this.generate.properties.length; index++) {
+      const element = this.generate.properties[index];
+      switch (this.generate.properties[index].typeProperties) {
+        case 'string':
+          this.generate.properties[index].result = this.generateString()
+          break;
+        case 'number':
+          this.generate.properties[index].result = this.generateNumber()
+          break;
+        default:
+          break;
+      }
+    }
 
     this.attributeValue();
     this.watchValue = true;
   }
 
   attributeValue() {
-    for (let index = 0; index < this.generateForms.getRawValue().generateFormArray.length; index++) {
-      const element = this.generateForms.getRawValue().generateFormArray[index].typeProperties;
-      this.strin = (<FormArray>this.generateForms.get('generateFormArray')).value[index].typeProperties;
-      console.log(element)
-      switch (element) {
-        case 'string':
-      this.generateString();
-          break;
-        case 'number':
-        this.generateNumber();
-          break;
-  
-        case 'array':
-  
-          break;
-  
-        default:
-          break;
-      }
-    }
+
     const nbrLiner = this.generateForms.get('nbrLiner').value;
     let i = 0;
     while (i < nbrLiner) {
-      i ++;
+      i++;
       this.arrayLiner.push(this.generate);
     }
-   
+
   }
 
   generateString() {

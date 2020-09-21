@@ -66,11 +66,22 @@ export class GeneratorFormsService {
     {
         updateOn: 'change'
     }
+  );
+
+    const result = new FormControl(
+      {
+          value: '',
+          disabled: false
+      },
+      {
+          updateOn: 'change'
+      }
 );
     return this.fb.group({
       titleProperties: titleProperties,
       typeProperties: typeProperties,
       typeArrayProperties: typeArrayProperties,
+      result: result
     });
 }
 
