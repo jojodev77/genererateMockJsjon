@@ -23,6 +23,16 @@ export class GeneratorFormsService {
         }
     ),
 
+    nbrLiner: new FormControl(
+      {
+          value: '',
+          disabled: false
+      },
+      {
+          updateOn: 'change'
+      }
+  ),
+
     generateFormArray: generateFormArray
     })
   }
@@ -60,7 +70,7 @@ export class GeneratorFormsService {
     return this.fb.group({
       titleProperties: titleProperties,
       typeProperties: typeProperties,
-      typeArrayProperties: typeArrayProperties
+      typeArrayProperties: typeArrayProperties,
     });
 }
 
