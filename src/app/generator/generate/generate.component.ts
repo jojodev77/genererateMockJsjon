@@ -7,6 +7,8 @@ import { Generate } from './model/generate.model';
 import { stringData } from './data/string.data';
 import { number_data } from './data/number.data';
 
+
+
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
@@ -31,6 +33,18 @@ export class GenerateComponent implements OnInit {
 
   valueAny: any;
 
+   valueSelect = [
+    {value: 'string'},
+    {value: 'number'},
+    {value: 'array'},
+  ];
+  optionStatus = {
+    value: ''
+  }
+
+  strin: string;
+  arrayLiner: any[] = [];
+
   ngOnInit(): void {
     this.generateForms = this.generateFormsService.buildForm();
     this.nbrProperties = 1;
@@ -47,29 +61,42 @@ export class GenerateComponent implements OnInit {
   creationMock() {
     this.generate = {
       title: this.generateForms.get('title').value,
-      properties: this.generateForms.getRawValue().generateFormArray
+      properties: this.generateForms.getRawValue().generateFormArray,
+      result: this.valueAny
     } as Generate;
 
-    this.generateString();
+    this.attributeValue();
     this.watchValue = true;
   }
 
   attributeValue() {
-    switch (this.generateForms.get('nbrLiner').value) {
-      case 'string':
-    this.generateString();
-        break;
-      case 'number':
-      this.generateNumber();
-        break;
-
-      case 'array':
-
-        break;
-
-      default:
-        break;
+    for (let index = 0; index < this.generateForms.getRawValue().generateFormArray.length; index++) {
+      const element = this.generateForms.getRawValue().generateFormArray[index].typeProperties;
+      this.strin = (<FormArray>this.generateForms.get('generateFormArray')).value[index].typeProperties;
+      console.log(element)
+      switch (element) {
+        case 'string':
+      this.generateString();
+          break;
+        case 'number':
+        this.generateNumber();
+          break;
+  
+        case 'array':
+  
+          break;
+  
+        default:
+          break;
+      }
     }
+    const nbrLiner = this.generateForms.get('nbrLiner').value;
+    let i = 0;
+    while (i < nbrLiner) {
+      i ++;
+      this.arrayLiner.push(this.generate);
+    }
+   
   }
 
   generateString() {
