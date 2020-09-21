@@ -2,5 +2,5 @@
      title: string;
      nbrLiner: number;
      properties: any[],
-     result: any
+     result: any;
  }
