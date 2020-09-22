@@ -7,7 +7,11 @@
             <section>
                 <mat-form-field class="example-form-field">
                     <mat-label>Titre de la data</mat-label>
-                    <input matInput type="text" formControlName="title">
+                    <input matInput type="text" formControlName="title"
+                    [ngClass]="{
+                        'valid':generateForms.get('title').valid,
+                        'disabled': generateForms.get('title').disabled
+                        }">
                     <button mat-button *ngIf="generateForms.get('title').value" matSuffix mat-icon-button
                         aria-label="Clear" (click)="value=''">
                         <mat-icon>close</mat-icon>
@@ -18,7 +22,13 @@
             <section>
                 <mat-form-field class="example-form-field">
                     <mat-label>Nombre de ligne:</mat-label>
-                    <input matInput type="number" formControlName="nbrLiner">
+                    <input matInput 
+                    type="number"
+                     formControlName="nbrLiner"
+                     [ngClass]="{
+                         'valid':generateForms.get('nbrLiner').valid,
+                         'disabled': generateForms.get('nbrLiner').disabled
+                         }">
                     <button mat-button *ngIf="generateForms.get('nbrLiner').value" matSuffix mat-icon-button
                         aria-label="Clear" (click)="value=''">
                         <mat-icon>close</mat-icon>
@@ -26,14 +36,15 @@
                 </mat-form-field>
             </section>
 
-            <button (click)="addGenerateForm()">
+            <button (click)="addGenerateForm()" [disabled]="disabledButton === false"
+                [ngClass]="{'disabled': disabledButton === false}">
                 Ajouter une propriété
                 <mat-icon>playlist_add</mat-icon>
             </button>
 
             <section fxLayout="column" fxLayoutAlign="space-around center" formArrayName="generateFormArray">
                 <section *ngFor="let generateForm of getGenerateFormControls(); index as i" [formGroupName]="i">
-                    <span class="nbrProperties">Propriété {{nbrProperties}}</span>
+
                     <section fxLayout="row" fxLayoutAlign="space-around center">
 
                         <section>
@@ -62,11 +73,24 @@
                     </section>
 
                 </section>
-                <button (click)="creationMock()">
-                    Création
-                    <mat-icon>playlist_add_check</mat-icon>
-                </button>
-
+                <section fxLayout="row" fxLayoutAlign="space-around center">
+                    <button (click)="creationMock()">
+                        Création
+                        <mat-icon>playlist_add_check</mat-icon>
+                    </button>
+                    <button (click)="saveObject()">
+                        Sauvegarder objet
+                        <mat-icon>archive</mat-icon>
+                    </button>
+                    <button (click)="reinitiateResult()">
+                        Réinitialiser
+                        <mat-icon>replay</mat-icon>
+                    </button>
+                    <button (click)="recupObject()">
+                        Réafficher objet
+                        <mat-icon>replay</mat-icon>
+                    </button>
+                </section>
             </section>
 
 
@@ -78,24 +102,26 @@
 
 
         <section class="block" fxLayout="column" fxLayoutAlign="space-around center" *ngIf="watchValue === true">
-            <span>{{'"'}}{{generate?.title}}{{'"'}}:</span>
-            <span>{{ '['}}</span>
-            <div *ngFor="let array of arrayLiner">
-                <span>{{ '{'}}</span>
-                <ul *ngFor="let properties of generate?.properties">
-                    <li>{{'"'}}{{properties?.titleProperties}}{{'"'}}:
-                        <ng-container *ngIf="strin === 'string'">
-                            {{'"'}}
-                        </ng-container>
-                        {{properties?.result}}
-                        <ng-container *ngIf="strin === 'string'">
-                            {{'"'}}
-                        </ng-container>
-                    </li>
-                </ul>
-                <span>{{ '},'}}</span>
-            </div>
-            <span>{{ ']'}}</span>
+            <section class="result">
+                <span>{{'"'}}{{generate?.title}}{{'"'}}:</span>
+                <span>{{ '['}}</span>
+                <div *ngFor="let array of arrayLiner">
+                    <span>{{ '{'}}</span>
+                    <ul *ngFor="let properties of generate?.properties">
+                        <li>{{'"'}}{{properties?.titleProperties}}{{'"'}}:
+                            <ng-container *ngIf="strin === 'string'">
+                                {{'"'}}
+                            </ng-container>
+                            {{properties?.result}}
+                            <ng-container *ngIf="strin === 'string'">
+                                {{'"'}}
+                            </ng-container>
+                        </li>
+                    </ul>
+                    <span>{{ '},'}}</span>
+                </div>
+                <span>{{ ']'}}</span>
+            </section>
         </section>
 
     </section>

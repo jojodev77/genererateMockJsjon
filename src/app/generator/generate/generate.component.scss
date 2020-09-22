@@ -8,15 +8,32 @@
     padding: 25px;
 }
 
-li{
-    margin-top: 3px;
-    list-style-type: none;
-    display: inline-block;
-    white-space: unset;
+.result{
+    margin-top: 10%;
+    padding: 50px;
 }
 
-.nbrProperties{
-    padding: 10px;
-    text-decoration: underline;
-    font-weight: bolder;
+ul {
+    margin: 0;
+}
+
+li{
+    list-style-type: none;
+    margin :0;
+    display : inline;
+}
+
+.disabled{
+    opacity: 0.3;
+    background-color: grey;
+    border: 1px solid red;
+    cursor: not-allowed;
+}
+
+.valid{
+    border: 1px solid green;
+}
+
+button{
+    margin: 15px;
 }

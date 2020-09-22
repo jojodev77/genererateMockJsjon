@@ -9,6 +9,7 @@ import { GenerateComponent } from './generate/generate.component';
 import { ConfigComponent } from './config/config.component';
 
 import { GeneratorFormsService } from './services/generator-forms.service';
+import {GenerateService} from './services/generate.service';
 
 
 
@@ -23,6 +24,6 @@ import { GeneratorFormsService } from './services/generator-forms.service';
     ReactiveFormsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [GeneratorFormsService]
+  providers: [GeneratorFormsService, GenerateService]
 })
 export class GeneratorModule { }
