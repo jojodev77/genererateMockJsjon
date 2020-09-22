@@ -161,7 +161,6 @@ export class GenerateComponent implements OnInit, AfterViewChecked {
   }
 
   saveObject() {
-    console.log(this.generate)
     this.generateService.saveObjectToSessionStorage(JSON.stringify(this.generate));
   }
 
