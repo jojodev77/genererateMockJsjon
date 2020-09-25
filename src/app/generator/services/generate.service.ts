@@ -10,6 +10,8 @@ export class GenerateService {
 
   constructor() { }
 
+ 
+
   saveObjectToSessionStorage(object: any) {
 
     sessionStorage.setItem('generate', object)
@@ -21,5 +23,9 @@ export class GenerateService {
 
   deleteObjectToSessionStorage() {
     sessionStorage.removeItem('generate')
+  }
+
+  dataToSesion() {
+    let obj: Generate = JSON.parse(this.getObjectToSessionStorage());
   }
 }

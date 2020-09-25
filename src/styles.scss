@@ -12,7 +12,19 @@ mat-form-field{
     padding: 10px;
     text-align: center !important;
     cursor: pointer;
+    border-radius: 10px;
 }
+
+mat-form-field:hover{
+    margin: 5px;
+    padding: 10px;
+    text-align: center !important;
+    cursor: pointer;
+    background-color: antiquewhite;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
 
 
 
@@ -21,4 +33,16 @@ mat-form-field{
     font-family: arial;
     letter-spacing: 0.1em;
     text-align: center;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: darkgrey;
+    text-align: center;
+    padding: 12px;
+}
+
+button:hover{
+    background-color: red;
 }

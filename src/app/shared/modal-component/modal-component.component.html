@@ -1,0 +1,46 @@
+<div
+        mat-dialog-content
+        id="dialog-content"
+        class="dialog">
+    <div
+            id="dialog-header"
+            class="dialog__header {{ selectedModalType.class }}"
+            fxLayout="row"
+            fxLayoutAlign="center center">
+        <mat-icon
+                *ngIf="selectedModalType.class === 'success'"
+                class="dialog__header__icon dialog__header__icon-success">check_circle_outline
+        </mat-icon>
+        <div
+                *ngIf="selectedModalType.class === 'error' || selectedModalType.class === 'warning'"
+                class="dialog__header__icon">
+            <span>ERREUR:</span>
+        </div>
+    </div>
+
+    <div id="dialog-body" class="dialog__body">
+        <p id="message" [innerHTML]="modalMessage"></p>
+        <div *ngIf="passedData.typingErrors" class="dialog__error__message" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+        </div>
+    </div>
+
+</div>
+<div
+        mat-dialog-actions
+        id="dialog-action"
+        class="action">
+    <button mat-button class="btn btn-primary btn-primary-cancel action__button" (click)="annuler()" *ngIf="selectedModalType.cancel"> Annuler </button>
+    <button mat-button
+            class="btn btn-primary btn-primary-{{selectedModalType.class}} action__button"
+            (click)="quitter()"
+            *ngIf="passedData.typingErrors">
+        {{ selectedModalType.action }}
+    </button>
+    <button mat-button
+            class="btn btn-primary btn-primary-{{selectedModalType.class}} action__button"
+            (click)="quitter()"
+            *ngIf="!passedData.typingErrors">
+        {{ selectedModalType.action }}
+    </button>
+</div>
+

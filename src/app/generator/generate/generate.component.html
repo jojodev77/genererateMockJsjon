@@ -4,16 +4,18 @@
 
         <section class="block" fxLayout="column" fxLayoutAlign="space-around center">
             <span>Création du mock</span>
+            <section class="result">
+            <section fxLayout="row" fxLayoutAlign="space-around center">
+                
             <section>
                 <mat-form-field class="example-form-field">
-                    <mat-label>Titre de la data</mat-label>
-                    <input matInput type="text" formControlName="title"
-                    [ngClass]="{
+                    <mat-label>Titre de l'objet</mat-label>
+                    <input matInput type="text" formControlName="title" [ngClass]="{
                         'valid':generateForms.get('title').valid,
                         'disabled': generateForms.get('title').disabled
                         }">
                     <button mat-button *ngIf="generateForms.get('title').value" matSuffix mat-icon-button
-                        aria-label="Clear" (click)="value=''">
+                        aria-label="Clear" (click)="value=generateForms.get('title').setValue('')">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
@@ -22,19 +24,18 @@
             <section>
                 <mat-form-field class="example-form-field">
                     <mat-label>Nombre de ligne:</mat-label>
-                    <input matInput 
-                    type="number"
-                     formControlName="nbrLiner"
-                     [ngClass]="{
+                    <input matInput type="number" formControlName="nbrLiner" [ngClass]="{
                          'valid':generateForms.get('nbrLiner').valid,
                          'disabled': generateForms.get('nbrLiner').disabled
                          }">
                     <button mat-button *ngIf="generateForms.get('nbrLiner').value" matSuffix mat-icon-button
-                        aria-label="Clear" (click)="value=''">
+                        aria-label="Clear" (click)="value=generateForms.get('nbrLiner').setValue('')">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
             </section>
+        </section>
+        </section>
 
             <button (click)="addGenerateForm()" [disabled]="disabledButton === false"
                 [ngClass]="{'disabled': disabledButton === false}">
@@ -74,21 +75,24 @@
 
                 </section>
                 <section fxLayout="row" fxLayoutAlign="space-around center">
-                    <button (click)="creationMock()">
+                    <button (click)="creationMock()"
+                    [disabled]="generateForms.invalid">
                         Création
                         <mat-icon>playlist_add_check</mat-icon>
                     </button>
-                    <button (click)="saveObject()">
+                    <button (click)="saveObject()" [disabled]="saveObjectStatus === false"
+                        [ngClass]="{'disabled': saveObjectStatus === false }">
                         Sauvegarder objet
                         <mat-icon>archive</mat-icon>
                     </button>
-                    <button (click)="reinitiateResult()">
-                        Réinitialiser
-                        <mat-icon>replay</mat-icon>
-                    </button>
-                    <button (click)="recupObject()">
+                    <button (click)="readObject()" [disabled]="dataInSession === false"
+                        [ngClass]="{'disabled': dataInSession === false }">
                         Réafficher objet
                         <mat-icon>replay</mat-icon>
+                    </button>
+                    <button (click)="reinitiateResult()">
+                        Réinitialiser
+                        <mat-icon>backspace</mat-icon>
                     </button>
                 </section>
             </section>

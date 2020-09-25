@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // angular -flex 
@@ -18,9 +19,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+
+import {ModalService} from './services/modal.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [ModalComponentComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -35,7 +41,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   exports: [
     FlexLayoutModule,
@@ -50,7 +57,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    MatToolbarModule
-  ]
+    MatToolbarModule,
+    MatDialogModule
+  ],
+  entryComponents: [ModalComponentComponent],
+  providers: [ModalService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class SharedModule { }

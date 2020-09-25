@@ -1,4 +1,4 @@
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -19,7 +19,8 @@ export class GeneratorFormsService {
             disabled: false
         },
         {
-            updateOn: 'change'
+            updateOn: 'change',
+            validators: [Validators.required],
         }
     ),
 
