@@ -10,7 +10,7 @@ export const modalTypesConfig = {
     'creation-error': {
         'class': 'error',
         'message': 'Objet a été créée avec succès.',
-        'action': 'C\'est noté',
+        'action': 'Je modifie',
         'callback': 'creation-error',
         'cancel': false
     },
