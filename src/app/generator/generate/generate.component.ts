@@ -218,7 +218,6 @@ export class GenerateComponent implements OnInit, AfterViewChecked {
 
   readObject() {
     this.generateForms.reset();
-    this.generate = null;
     let obj: Generate = JSON.parse(this.generateService.getObjectToSessionStorage());
 
     this.generate = {
@@ -240,6 +239,8 @@ export class GenerateComponent implements OnInit, AfterViewChecked {
           break;
       }
     }
+
+    this.watchValue = true;
   }
 
   private _generateNbrAleatory() {
